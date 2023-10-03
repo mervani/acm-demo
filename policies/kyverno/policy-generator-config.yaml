@@ -3,6 +3,7 @@ kind: PolicyGenerator
 metadata:
   name: kyverno-policy-generator
 policyDefaults:
+  configurationPolicyAnnotations: {"policy.open-cluster-management.io/disable-templates": "true"}
   namespace: acm-policies
   remediationAction: enforce
 placementBindingDefaults:

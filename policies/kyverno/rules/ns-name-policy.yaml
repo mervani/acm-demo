@@ -36,6 +36,6 @@ spec:
         deny:
           conditions:
             any:
-            - key: "{{`{{request.object.metadata.name}}`}}"
+            - key: "{{ request.object.metadata.name }}"
               operator: AnyNotIn
               value: "bsa-*"
