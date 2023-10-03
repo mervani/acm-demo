@@ -32,3 +32,9 @@ patches:
         path: /spec/jobTemplate/spec/template/spec/containers/0/imagePullPolicy
     target:
       kind: CronJob
+  - patch: |-
+      - op: add
+        path: /spec/replicas
+        value: 1
+    target:
+      kind: Deployment
