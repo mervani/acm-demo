@@ -35,10 +35,6 @@ spec:
         - CREATE
         - UPDATE
     mutate:
-      patchesJson6902: |-
-          - path: "/metadata/labels/framework"
-            op: add
-            value: bsa
       patchStrategicMerge:
         metadata:
           labels:
