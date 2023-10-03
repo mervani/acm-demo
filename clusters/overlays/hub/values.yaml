@@ -15,7 +15,16 @@ default:
 
 applications:
 
-  hub-parent-app:
+  acm-placement-app:
+    annotations:
+      argocd.argoproj.io/sync-wave: '-10'
     source:
-      path: clusters/overlays/hub
+      path: policies/placements
 
+  gitops-policy-app:
+    source:
+      path: policies/gitops
+
+  acm-observability-app:
+    source:
+      path: policies/observability
