@@ -34,4 +34,4 @@ policySets:
       - policy-odf-status
     generatePolicySetPlacement: false
     placement:
-      name: placement-policy-hub
+      name: placement-hub
