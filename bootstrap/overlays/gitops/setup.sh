@@ -6,7 +6,7 @@ SLEEP_SECONDS=45
 echo ""
 echo "Installing GitOps Operator."
 
-kustomize build ../../components/policies/gitops/base/manifests/gitops-subscription | oc apply -f -
+kustomize build ../../../policies/gitops/subscription/ | oc apply -f -
 
 echo "Pause $SLEEP_SECONDS seconds for the creation of the gitops-operator..."
 sleep $SLEEP_SECONDS
