@@ -2,7 +2,7 @@ apiVersion: cluster.open-cluster-management.io/v1beta1
 kind: Placement
 metadata:
   name: placement-hub
-  namespace: policies
+  namespace: acm-policies
 spec:
   predicates:
   - requiredClusterSelector:
