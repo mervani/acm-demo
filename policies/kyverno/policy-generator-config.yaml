@@ -9,16 +9,11 @@ placementBindingDefaults:
   name: "binding-policy-kyverno"
 policies:
   - name: policy-kyverno-install
-    remediationAction: enforce
     manifests:
       - path: install/
   - name: policy-kyverno-global-rules
     dependencies:
     - name: "policy-kyverno-install"
-      namespace: "acm-policies"
-      compliance: "Compliant"
-      kind: "Policy"
-      apiVersion: "policy.open-cluster-management.io/v1"
     manifests:
       - path: rules/
 policySets:
