@@ -1,0 +1,42 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: gitops-policy-generator
+policyDefaults:
+  namespace: acm-policies
+  remediationAction: enforce
+placementBindingDefaults:
+  name: "binding-policy-gitops"
+policies:
+  - name: policy-gitops-subscription
+    remediationAction: enforce
+    manifests:
+      - path: subscription/
+  - name: policy-gitops-instance
+    dependencies:
+    - name: "policy-gitops-subscription"
+      namespace: "acm-policies"
+      compliance: "Compliant"
+      kind: "Policy"
+      apiVersion: "policy.open-cluster-management.io/v1"
+    manifests:
+      - path: instance/
+  - name: policy-gitops-bootstrap
+    dependencies:
+    - name: "policy-gitops-instance"
+      namespace: "acm-policies"
+      compliance: "Compliant"
+      kind: "Policy"
+      apiVersion: "policy.open-cluster-management.io/v1"
+    manifests:
+      - path: bootstrap/
+policySets:
+  - name: "gitops"
+    description: "Policy for bootstrapping cluster with ArgoCD"
+    policies:
+      - policy-gitops-subscription
+      - policy-gitops-instance
+      - policy-gitops-bootstrap
+    generatePolicySetPlacement: false
+    placement:
+      name: placement-policy-gitops

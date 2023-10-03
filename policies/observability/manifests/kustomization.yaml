@@ -1,0 +1,7 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - policy-ocm-console.yaml
+  - policy-ocm-observability.yaml
+  - policy-ocm-pull-secret.yaml

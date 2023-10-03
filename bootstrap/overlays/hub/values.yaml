@@ -1,0 +1,28 @@
+default:
+  app:
+    enabled: true
+    enableAutoSync: true
+    autoSyncPrune: true
+    project: bootstrap
+    destination:
+      namespace: openshift-gitops
+      server: https://kubernetes.default.svc
+    source:
+      repoURL: https://github.com/mervani/acm-demo.git
+      targetRevision: HEAD
+    labels:
+      cluster-type: hub
+
+applications:
+
+  gitops-policy-app:
+    source:
+      path: policies/gitops
+
+  acm-placement-app:
+    source:
+      path: policies/placements
+
+  acm-observability-app:
+    source:
+      path: policies/observability
