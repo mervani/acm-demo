@@ -1,0 +1,32 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: kyverno-policy-generator
+policyDefaults:
+  namespace: acm-policies
+  remediationAction: enforce
+placementBindingDefaults:
+  name: "binding-policy-kyverno"
+policies:
+  - name: policy-kyverno-install
+    remediationAction: enforce
+    manifests:
+      - path: install/
+  - name: policy-kyverno-global-rules
+    dependencies:
+    - name: "policy-kyverno-install"
+      namespace: "acm-policies"
+      compliance: "Compliant"
+      kind: "Policy"
+      apiVersion: "policy.open-cluster-management.io/v1"
+    manifests:
+      - path: rules/
+policySets:
+  - name: "gitops"
+    description: "Policy for bootstrapping cluster with ArgoCD"
+    policies:
+      - policy-kyverno-install
+      - policy-kyverno-global-rules
+    generatePolicySetPlacement: false
+    placement:
+      name: placement-policy-all

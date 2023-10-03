@@ -1,0 +1,45 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: mutate-ns-label
+  annotations:
+    policies.kyverno.io/title: Mutate DevOps Namespace label
+    policies.kyverno.io/category: Multitenancy, Multicluster-Management
+    policies.kyverno.io/severity: medium
+    kyverno.io/kyverno-version: 1.7.0
+    policies.kyverno.io/minversion: 1.7.0
+    kyverno.io/kubernetes-version: "1.23"
+    policies.kyverno.io/subject: Group
+    policies.kyverno.io/description: >-
+      Mutates the label of the namespace from the devops team
+spec:
+  validationFailureAction: enforce
+  background: false
+  rules:
+  - name: namespace-name
+    match:
+      any:
+      - resources:
+          kinds:
+            - Namespace
+            - ProjectRequest
+            - Project
+        subjects:
+        - kind: Group
+          name: "devops-group"
+    preconditions:
+      any:
+      - key: "{{request.operation}}"
+        operator: In
+        value:
+        - CREATE
+        - UPDATE
+    mutate:
+      patchesJson6902: |-
+          - path: "/metadata/labels/framework"
+            op: add
+            value: bsa
+      patchStrategicMerge:
+        metadata:
+          labels:
+            ns-owner: devops

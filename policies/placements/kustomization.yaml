@@ -3,5 +3,6 @@ kind: Kustomization
 
 resources:
   - mcsb.yaml
+  - placement-policy-all.yaml
   - placement-hub.yaml 
   - placement-gitops.yaml

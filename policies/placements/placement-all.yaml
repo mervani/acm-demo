@@ -1,0 +1,8 @@
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  name: placement-policy-all
+  namespace: acm-policies
+spec:
+  clusterSets:
+  - global
