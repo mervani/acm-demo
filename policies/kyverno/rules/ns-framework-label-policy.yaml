@@ -16,19 +16,18 @@ spec:
       - resources:
           kinds:
           - Namespace
-    preconditions:
-      any:
-      - key: "{{ request.object.metadata.name }}"
-        operator: AllNotIn
-        value:
-        - openshift
-        - "openshift-*"
-        - "open-cluster-*"
-        - "kube-*"
+
     exclude:
       any:
       - clusterRoles:
         - cluster-admin
+      - resources:
+          namespaces:
+          - openshift
+          - "openshift-*"
+          - "open-cluster-*"
+          - "kube-*"
+
     # The `validate` statement tries to positively check what is defined. If the statement, when compared with the requested resource, is true, it is allowed. If false, it is blocked.
     validate:
       # The `message` is what gets displayed to a user if this rule fails validation.
