@@ -19,7 +19,7 @@ spec:
     preconditions:
       any:
       - key: "{{ request.object.metadata.name }}"
-        operator: AnyNotIn
+        operator: AllNotIn
         value:
         - openshift
         - "openshift-*"
