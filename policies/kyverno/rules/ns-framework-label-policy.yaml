@@ -23,10 +23,16 @@ spec:
         - cluster-admin
       - resources:
           namespaces:
-          - openshift
+          - "openshift"
           - "openshift-*"
           - "open-cluster-*"
           - "kube-*"
+          - "default"
+          - "default-broker"
+          - "hive"
+          - "multicluster-engine"
+          - "acm-policies"
+          - "local-cluster"
 
     # The `validate` statement tries to positively check what is defined. If the statement, when compared with the requested resource, is true, it is allowed. If false, it is blocked.
     validate:
