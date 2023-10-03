@@ -16,8 +16,6 @@ spec:
       - resources:
           kinds:
           - Namespace
-          - ProjectRequest
-          - Project
     exclude:
       any:
       - clusterRoles:
