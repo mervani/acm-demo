@@ -25,6 +25,14 @@ applications:
     source:
       path: policies/gitops
 
+  odf-policy-app:
+    source:
+      path: policies/odf
+
   acm-observability-app:
     source:
       path: policies/observability
+
+  kyverno-policy-app:
+    source:
+      path: policies/kyverno

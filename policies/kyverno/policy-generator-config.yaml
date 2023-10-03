@@ -23,7 +23,7 @@ policies:
       - path: rules/
 policySets:
   - name: "gitops"
-    description: "Policy for bootstrapping cluster with ArgoCD"
+    description: "Policy for installing kyverno and applying kyverno policies"
     policies:
       - policy-kyverno-install
       - policy-kyverno-global-rules

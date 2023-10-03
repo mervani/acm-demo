@@ -1,0 +1,13 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-policy-odf
+  namespace: acm-policies
+placementRef:
+  apiGroup: cluster.open-cluster-management.io
+  kind: Placement
+  name: placement-policy-hub
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: PolicySet
+  name: odf

@@ -1,0 +1,37 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: odf-policy-generator
+policyDefaults:
+  namespace: acm-policies
+  remediationAction: enforce
+placementBindingDefaults:
+  name: "binding-policy-odf"
+policies:
+  - name: policy-odf-install
+    remediationAction: enforce
+    manifests:
+      - path: subscription/
+  - name: policy-odf-observability-bucket
+    dependencies:
+    - name: "policy-odf-install"
+      namespace: "acm-policies"
+    manifests:
+      - path: resources/
+  - name: policy-odf-status
+    remediationAction: inform
+    dependencies:
+    - name: "policy-odf-observability-bucket"
+      namespace: "acm-policies"
+    manifests:
+      - path: status/
+policySets:
+  - name: "odf"
+    description: "Policy for installing ODF and generating observability bucket"
+    policies:
+      - policy-odf-install
+      - policy-odf-observability-bucket
+      - policy-odf-status
+    generatePolicySetPlacement: false
+    placement:
+      name: placement-policy-hub

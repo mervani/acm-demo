@@ -12,6 +12,9 @@ policies:
     consolidateManifests: false
     manifests:
       - path: manifests/
+    dependencies:
+    - name: policy-odf-observability-bucket
+      namespace: "acm-policies"
   
   - name: policy-observability-gitops
     dependencies:
@@ -24,7 +27,7 @@ policies:
       - path: custom/
 policySets:
   - name: "observability"
-    description: "Policy for bootstrapping cluster with ArgoCD"
+    description: "Policy for enabling Observability"
     policies:
       - policy-acm-observability
       - policy-observability-gitops
