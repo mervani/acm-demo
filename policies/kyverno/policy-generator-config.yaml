@@ -4,6 +4,7 @@ metadata:
   name: kyverno-policy-generator
 policyDefaults:
   configurationPolicyAnnotations: {"policy.open-cluster-management.io/disable-templates": "true"}
+  policyAnnotations: {"argocd.argoproj.io/sync-options": "ServerSideApply=true"}
   namespace: acm-policies
   remediationAction: enforce
 placementBindingDefaults:
