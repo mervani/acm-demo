@@ -2,7 +2,7 @@ apiVersion: kyverno.io/v1
 # The `ClusterPolicy` kind applies to the entire cluster.
 kind: ClusterPolicy
 metadata:
-  name: require-ns-purpose-label
+  name: require-ns-framework-label
 # The `spec` defines properties of the policy.
 spec:
   # The `validationFailureAction` tells Kyverno if the resource being validated should be allowed but reported (`Audit`) or blocked (`Enforce`).
@@ -16,8 +16,8 @@ spec:
       - resources:
           kinds:
           - Namespace
-            - ProjectRequest
-            - Project
+          - ProjectRequest
+          - Project
     exclude:
       any:
       - clusterRoles:
