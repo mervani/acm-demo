@@ -5,4 +5,4 @@ resources:
   #- ns-mutate-label-policy.yaml
   - ns-framework-label-policy.yaml 
   - ns-name-policy.yaml
-  - dummy.yaml
+  #- dummy.yaml
