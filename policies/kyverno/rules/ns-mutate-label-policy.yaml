@@ -35,8 +35,10 @@ spec:
         - CREATE
         - UPDATE
     mutate:
-      patchStrategicMerge:
-        metadata:
-          labels:
-            ns-owner: devops
-            framework: bsa
+      patchesJson6902: |-
+        - op: add
+          path: "/metadata/labels/framework"
+          value: "bsa"
+        - op: add
+          path: "/metadata/labels/ns-owner"
+          value: "bsa-devops"
