@@ -17,8 +17,6 @@ spec:
       - resources:
           kinds:
           - Namespace
-          - ProjectRequest
-          - Project
     exclude:
       any:
       - clusterRoles:
@@ -28,7 +26,13 @@ spec:
       # The `message` is what gets displayed to a user if this rule fails validation.
       message: "You must have label `framework` set on all new namespaces."
       # The `pattern` object defines what pattern will be checked in the resource. In this case, it is looking for `metadata.labels` with `framework`.
-      pattern:
-        metadata:
-          labels:
-            framework: "?*"
+      #      pattern:
+      #        metadata:
+      #          labels:
+      #            framework: "?*"
+      deny:
+        conditions:
+          any:
+          - key: "{{ request.object.metadata.labels.framework }}"
+            operator: AnyNotIn
+            value: "?*"
