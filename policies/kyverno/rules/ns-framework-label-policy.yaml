@@ -5,7 +5,7 @@ metadata:
   name: require-ns-framework-label
 # The `spec` defines properties of the policy.
 spec:
-  background: true
+  background: false
   # The `validationFailureAction` tells Kyverno if the resource being validated should be allowed but reported (`Audit`) or blocked (`Enforce`).
   validationFailureAction: enforce
   # The `rules` is one or more rules which must be true.
