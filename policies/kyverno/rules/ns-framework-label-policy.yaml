@@ -16,7 +16,6 @@ spec:
       - resources:
           kinds:
           - Namespace
-
     exclude:
       any:
       - clusterRoles:
