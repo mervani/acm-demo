@@ -17,6 +17,7 @@ policies:
       namespace: "acm-policies"
   
   - name: policy-observability-gitops
+    configurationPolicyAnnotations: {"policy.open-cluster-management.io/disable-templates": "true"}
     dependencies:
     - name: "policy-acm-observability"
       namespace: "acm-policies"
