@@ -6,12 +6,8 @@ metadata:
     policies.kyverno.io/title: Mutate DevOps Namespace label
     policies.kyverno.io/category: Multitenancy, Multicluster-Management
     policies.kyverno.io/severity: medium
-    kyverno.io/kyverno-version: 1.7.0
     policies.kyverno.io/minversion: 1.7.0
     kyverno.io/kubernetes-version: "1.23"
-    policies.kyverno.io/subject: Group
-    policies.kyverno.io/description: >-
-      Mutates the label of the namespace from the devops team
 spec:
   background: false
   rules:
@@ -26,16 +22,13 @@ spec:
           name: "devops-group"
     preconditions:
       any:
-      - key: "{{ request.operation }}"
+      - key: "{{request.operation}}"
         operator: In
         value:
         - CREATE
         - UPDATE
     mutate:
-      patchesJson6902: |-
-        - op: add
-          path: "/metadata/labels/framework"
-          value: "bsa"
-        - op: add
-          path: "/metadata/labels/ns-owner"
-          value: "bsa-devops"
+      patchStrategicMerge:
+        metadata:
+          labels:
+            argocd.argoproj.io/managed-by: redteam 
