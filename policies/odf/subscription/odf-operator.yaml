@@ -45,8 +45,6 @@ metadata:
   namespace: openshift-storage
 spec:
   multiCloudGateway:
-    resources:
-      noobaa-db-vol: 100Gi
     dbStorageClassName: gp3-csi
     reconcileStrategy: standalone
 ---
