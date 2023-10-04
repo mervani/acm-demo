@@ -35,6 +35,9 @@ spec:
         - CREATE
         - UPDATE
     mutate:
+      targets:
+        - apiVersion: v1
+          kind: Namespace
       patchStrategicMerge:
         metadata:
           labels:
