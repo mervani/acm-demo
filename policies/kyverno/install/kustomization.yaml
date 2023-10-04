@@ -28,8 +28,6 @@ patches:
       name: kyverno
   - patch: |-
       - op: remove
-        path: /spec/jobTemplate/spec/template/metadata
-      - op: remove
         path: /spec/jobTemplate/spec/template/spec/containers/0/imagePullPolicy
     target:
       kind: CronJob
