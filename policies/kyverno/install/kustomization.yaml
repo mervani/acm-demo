@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - https://github.com/kyverno/kyverno/releases/download/v1.9.5/install.yaml
+  - https://github.com/kyverno/kyverno/releases/download/v1.10.3/install.yaml
   - crb.yaml
 
 patches:
@@ -28,6 +28,8 @@ patches:
       name: kyverno
   - patch: |-
       - op: remove
+        path: /spec/jobTemplate/spec/template/metadata
+      - op: remove
         path: /spec/jobTemplate/spec/template/spec/containers/0/imagePullPolicy
     target:
       kind: CronJob
@@ -38,6 +40,6 @@ patches:
     target:
       kind: Deployment
 
-#commonLabels:
-#app.kubernetes.io/name: kyverno
-#app: kyverno
+commonLabels:
+  app.kubernetes.io/name: kyverno
+  app: kyverno
