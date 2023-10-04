@@ -1,0 +1,25 @@
+apiVersion: kyverno.io/v2beta1
+kind: ClusterPolicy
+metadata:
+  name: mutate-pod
+spec:
+  mutateExistingOnPolicyUpdate: false
+  rules:
+  - name: label-pod
+    match:
+      any:
+      - resources:
+          kinds:
+          - Pod
+          namespaces:
+          - bsa-*
+          operations:
+          - UPDATE
+          - CREATE
+    mutate:
+      patchStrategicMerge:
+        spec:
+          template:
+            metadata:
+              annotations:
+                corp.org/random: "{{ random('[0-9a-z]{8}') }}"
