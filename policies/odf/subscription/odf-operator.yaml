@@ -44,41 +44,17 @@ metadata:
   name: ocs-storagecluster
   namespace: openshift-storage
 spec:
-  arbiter: {}
-  encryption:
-    kms: {}
-  externalStorage: {}
-  managedResources:
-    cephBlockPools: {}
-    cephCluster: {}
-    cephConfig: {}
-    cephDashboard: {}
-    cephFilesystems: {}
-    cephObjectStoreUsers: {}
-    cephObjectStores: {}
-    cephToolbox: {}
-  mirroring: {}
-  nodeTopologies: {}
-  storageDeviceSets:
-  - config: {}
-    count: 1
-    dataPVCTemplate:
-      metadata: {}
-      spec:
-        accessModes:
-        - ReadWriteOnce
-        resources:
-          requests:
-            storage: 100Gi
-        storageClassName: gp2-csi
-        volumeMode: Block
-      status: {}
-    name: ocs-deviceset-gp2-csi
-    placement: {}
-    portable: true
-    preparePlacement: {}
-    replica: 3
-    resources: {}
+  apiVersion: ocs.openshift.io/v1
+kind: StorageCluster
+metadata:
+  name: ocs-storagecluster
+  namespace: openshift-storage
+spec:
+  multiCloudGateway:
+    resources:
+       noobaa-db-vol: 100Gi
+    dbStorageClassName: gp3-csi
+    reconcileStrategy: standalone
 ---
 apiVersion: operator.openshift.io/v1
 kind: Console
