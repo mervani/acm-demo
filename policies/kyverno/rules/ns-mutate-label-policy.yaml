@@ -16,14 +16,12 @@ spec:
   validationFailureAction: enforce
   background: false
   rules:
-  - name: namespace-name
+  - name: add-namespace-label
     match:
       any:
       - resources:
           kinds:
             - Namespace
-            - ProjectRequest
-            - Project
         subjects:
         - kind: Group
           name: "devops-group"
