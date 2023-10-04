@@ -13,7 +13,6 @@ metadata:
     policies.kyverno.io/description: >-
       Mutates the label of the namespace from the devops team
 spec:
-  validationFailureAction: enforce
   background: false
   rules:
   - name: add-namespace-label
