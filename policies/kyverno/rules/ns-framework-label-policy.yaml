@@ -19,6 +19,10 @@ spec:
           - Namespace
           - ProjectRequest
           - Project
+    exclude:
+      any:
+      - clusterRoles:
+        - cluster-admin
     # The `validate` statement tries to positively check what is defined. If the statement, when compared with the requested resource, is true, it is allowed. If false, it is blocked.
     validate:
       # The `message` is what gets displayed to a user if this rule fails validation.
