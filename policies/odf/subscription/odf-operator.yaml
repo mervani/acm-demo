@@ -44,12 +44,6 @@ metadata:
   name: ocs-storagecluster
   namespace: openshift-storage
 spec:
-  apiVersion: ocs.openshift.io/v1
-kind: StorageCluster
-metadata:
-  name: ocs-storagecluster
-  namespace: openshift-storage
-spec:
   multiCloudGateway:
     resources:
        noobaa-db-vol: 100Gi
