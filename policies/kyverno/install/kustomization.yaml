@@ -40,4 +40,5 @@ patches:
       kind: Deployment
 
 commonLabels:
+  app.kubernetes.io/name: kyverno
   app: kyverno
