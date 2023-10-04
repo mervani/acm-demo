@@ -18,8 +18,6 @@ spec:
           - CREATE
     mutate:
       patchStrategicMerge:
-        spec:
-          template:
-            metadata:
-              annotations:
-                corp.org/random: "{{ random('[0-9a-z]{8}') }}"
+        metadata:
+          labels:
+            corp.org/random: "{{ random('[0-9a-z]{8}') }}"
