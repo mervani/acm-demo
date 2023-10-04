@@ -34,11 +34,6 @@ spec:
         - CREATE
         - UPDATE
     mutate:
-      targets:
-        - apiVersion: v1
-          kind: Namespace
-        - apiVersion: project.openshift.io/v1
-          kind: ProjectRequest
       patchesJson6902: |-
         - op: add
           path: "/metadata/labels/framework"
