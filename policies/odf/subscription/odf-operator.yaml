@@ -44,11 +44,11 @@ metadata:
   name: ocs-storagecluster
   namespace: openshift-storage
 spec:
-  multiCloudGateway:
-    resources:
-       noobaa-db-vol: 100Gi
-    dbStorageClassName: gp3-csi
-    reconcileStrategy: standalone
+  multiCloudGateway:
+    resources:
+      noobaa-db-vol: 100Gi
+    dbStorageClassName: gp3-csi
+    reconcileStrategy: standalone
 ---
 apiVersion: operator.openshift.io/v1
 kind: Console
