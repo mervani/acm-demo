@@ -37,7 +37,7 @@ spec:
       targets:
         - apiVersion: v1
           kind: Namespace
-        - apiVersion: v1
+        - apiVersion: project.openshift.io/v1
           kind: Project
       patchesJson6902: |-
         - op: add
