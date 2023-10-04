@@ -7,6 +7,7 @@ metadata:
 spec:
   # The `validationFailureAction` tells Kyverno if the resource being validated should be allowed but reported (`Audit`) or blocked (`Enforce`).
   validationFailureAction: enforce
+  background: false
   # The `rules` is one or more rules which must be true.
   rules:
   - name: require-ns-framework-label
