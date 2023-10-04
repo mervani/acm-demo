@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
   - https://github.com/kyverno/kyverno/releases/download/v1.10.3/install.yaml
+  - crb.yaml
 
 patches:
   - patch: |-
