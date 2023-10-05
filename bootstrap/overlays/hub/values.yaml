@@ -41,6 +41,10 @@ applications:
     source:
       path: policies/gatekeeper
 
+  acm-demo-policies-app:
+    source:
+      path: policies/demo-policies
+
   cluster-config-app:
     source:
       path: tenants/cluster-configs

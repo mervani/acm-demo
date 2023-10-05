@@ -1,0 +1,22 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: kyverno-policy-generator
+policyDefaults:
+  namespace: acm-policies
+  remediationAction: enforce
+placementBindingDefaults:
+  name: "binding-policy-demos"
+policies:
+  - name: policy-secret-populate
+    manifests:
+      - path: examples/ns.yaml
+      - path: examples/secret-populate.yaml
+policySets:
+  - name: "demo-policies"
+    description: "Policy for showing acm capabilities"
+    policies:
+      - policy-secret-populate
+    generatePolicySetPlacement: false
+    placement:
+      name: placement-policy-all
