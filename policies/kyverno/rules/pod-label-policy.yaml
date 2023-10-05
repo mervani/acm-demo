@@ -23,17 +23,15 @@ spec:
       - resources:
           kinds:
           - Pod
+          namespaces:
+          - bsa-*
+          operations:
+          - UPDATE
+          - CREATE
     exclude:
       any:
       - clusterRoles:
         - cluster-admin
-    preconditions:
-      any:
-      - key: "{{request.operation}}"
-        operator: AnyIn
-        value:
-        - CREATE
-        - UPDATE
     validate:
       message: The team label is required to create the deployment
       pattern:
