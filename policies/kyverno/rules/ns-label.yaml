@@ -41,7 +41,9 @@ spec:
         - UPDATE
     validate:
       message: The framework label is required to create the namespace
-      pattern:
-        metadata:
-          labels:
-            framework: "?*"
+      deny:
+        conditions:
+          any:
+          - key: "{{ request.object.metadata.labels.framework || '' }}"
+            operator: NotEquals
+            value: "?*"
