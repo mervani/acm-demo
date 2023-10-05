@@ -3,4 +3,5 @@ kind: Kustomization
 
 resources:
   - custom-metrics-allowlist.yaml
+  - custom-alerts.yaml
   - gitops-dashboard.yaml
