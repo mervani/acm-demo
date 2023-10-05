@@ -1,9 +1,9 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: validate-ns-label
+  name: validate-pod-label
   annotations:
-    policies.kyverno.io/title: Validate Team Namespace Label
+    policies.kyverno.io/title: Validate Team Pod Label
     policies.kyverno.io/category: Multitenancy, Multicluster-Management
     policies.kyverno.io/severity: medium
     kyverno.io/kyverno-version: 1.7.0
@@ -11,18 +11,18 @@ metadata:
     kyverno.io/kubernetes-version: "1.23"
     policies.kyverno.io/subject: Group
     policies.kyverno.io/description: >-
-      Denies the creation of a namespace if the label of the namespace does
-      not follow a specific naming defined by the cluster admins.
+      Denies the creation of a pod if the label of the pod does
+      not contain the team label
 spec:
   validationFailureAction: enforce
   background: false
   rules:
-  - name: namespace-label
+  - name: pod-team-label
     match:
       any:
       - resources:
           kinds:
-          - Namespace
+          - Pod
     exclude:
       any:
       - subjects:
@@ -38,10 +38,8 @@ spec:
         - CREATE
         - UPDATE
     validate:
-      message: The framework label is required to create the namespace
-      deny:
-        conditions:
-          any:
-          - key: "{{ request.object.metadata.labels.framework || '' }}"
-            operator: NotEquals
-            value: "?*"
+      message: The team label is required to create the deployment
+      pattern:
+        metadata:
+          labels:
+            team: "?*"

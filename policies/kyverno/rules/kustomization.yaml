@@ -5,5 +5,5 @@ resources:
 - ns-mutate-label-policy.yaml
   #- ns-framework-label-policy.yaml 
 - ns-name-policy.yaml
-- ns-label.yaml
+- pod-label-policy.yaml
   #- dummy.yaml
