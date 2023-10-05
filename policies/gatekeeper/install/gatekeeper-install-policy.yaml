@@ -49,8 +49,6 @@ spec:
                   namespace: openshift-gatekeeper-system
                 spec:
                   displayName: Gatekeeper Operator
-                status:
-                  phase: Succeeded
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
