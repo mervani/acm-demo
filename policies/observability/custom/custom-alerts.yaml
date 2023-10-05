@@ -6,7 +6,7 @@ metadata:
 data:
   custom_rules.yaml: |
     groups:
-      - name: cluster-health-cpu-60
+      - name: cluster-health
         rules:
         - alert: ClusterCPUReq-60
           annotations:
