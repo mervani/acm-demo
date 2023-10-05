@@ -1,0 +1,65 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  annotations:
+    kyverno.io/kubernetes-version: "1.23"
+    kyverno.io/kyverno-version: 1.7.0
+    policies.kyverno.io/category: Multitenancy, Multicluster-Management
+    policies.kyverno.io/description: Denies the creation of a namespace if the label
+      of the namespace does not follow a specific naming defined by the cluster admins.
+    policies.kyverno.io/minversion: 1.7.0
+    policies.kyverno.io/severity: medium
+    policies.kyverno.io/subject: Group
+    policies.kyverno.io/title: Validate Team Namespace Label
+  creationTimestamp: "2023-10-05T06:33:39Z"
+  generation: 1
+  name: validate-ns-label
+  resourceVersion: "1370722"
+  uid: d291f4f4-76da-4e8c-bf0e-875ab1b28a57
+spec:
+  admission: true
+  background: false
+  rules:
+  - exclude:
+      any:
+      - subjects:
+        - kind: Group
+          name: devops-group
+      - clusterRoles:
+        - cluster-admin
+    match:
+      any:
+      - resources:
+          kinds:
+          - Namespace
+    name: namespace-label
+    preconditions:
+      any:
+      - key: '{{request.operation}}'
+        operator: AnyIn
+        value:
+        - CREATE
+        - UPDATE
+    validate:
+      deny:
+        conditions:
+          any:
+          - key: '{{ request.object.metadata.labels.framework || '''' }}'
+            operator: NotEquals
+            value: ?*
+      message: The framework label is required to create the namespace
+  validationFailureAction: enforce
+status:
+  autogen: {}
+  conditions:
+  - lastTransitionTime: "2023-10-05T06:33:40Z"
+    message: Ready
+    reason: Succeeded
+    status: "True"
+    type: Ready
+  ready: true
+  rulecount:
+    generate: 0
+    mutate: 0
+    validate: 1
+    verifyimages: 0

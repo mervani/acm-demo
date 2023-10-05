@@ -25,9 +25,6 @@ spec:
           - Pod
     exclude:
       any:
-      - subjects:
-        - kind: Group
-          name: "devops-group"
       - clusterRoles:
         - cluster-admin
     preconditions:
