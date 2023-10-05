@@ -1,0 +1,26 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: gatekeeper-policy-generator
+policyDefaults:
+  configurationPolicyAnnotations: {"policy.open-cluster-management.io/disable-templates": "true"}
+  policyAnnotations: {"argocd.argoproj.io/sync-options": "ServerSideApply=true"}
+  namespace: acm-policies
+  remediationAction: enforce
+placementBindingDefaults:
+  name: "binding-policy-gatekeeper"
+policies:
+  - name: policy-gatekeeper-rules
+    dependencies:
+    - name: "policy-gatekeeper-operator"
+    manifests:
+      - path: rules/
+policySets:
+  - name: "gatekeeper"
+    description: "Policy for applying gatekeeper policies"
+    policies:
+      - policy-gatekeeper-operator
+      - policy-gatekeeper-rules
+    generatePolicySetPlacement: false
+    placement:
+      name: placement-policy-opa
