@@ -27,7 +27,7 @@ spec:
             - Project
     exclude:
       any:
-        subjects:
+      - subjects:
         - kind: Group
           name: "devops-group"
     validate:
