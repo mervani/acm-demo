@@ -14,10 +14,10 @@ spec:
     resources:
       limits:
         cpu: 500m
-        memory: 256Mi
+        memory: 56Mi
       requests:
-        cpu: 125m
-        memory: 128Mi
+        cpu: 25m
+        memory: 28Mi
     route:
       enabled: true
     service:
@@ -31,7 +31,7 @@ spec:
         cpu: 500m
         memory: 256Mi
       requests:
-        cpu: 250m
+        cpu: 25m
         memory: 128Mi
     route:
       enabled: false
@@ -216,8 +216,8 @@ spec:
           cpu: 500m
           memory: 256Mi
         requests:
-          cpu: 250m
-          memory: 128Mi
+          cpu: 25m
+          memory: 28Mi
     provider: dex
   applicationSet:
     resources:
@@ -225,8 +225,8 @@ spec:
         cpu: '2'
         memory: 1Gi
       requests:
-        cpu: 250m
-        memory: 512Mi
+        cpu: 25m
+        memory: 51Mi
     webhookServer:
       ingress:
         enabled: false
@@ -278,8 +278,8 @@ spec:
         cpu: '2'
         memory: 2Gi
       requests:
-        cpu: 500m
-        memory: 512Mi
+        cpu: 50m
+        memory: 51Mi
     volumeMounts:
       - mountPath: >-
           /etc/kustomize/plugin/policy.open-cluster-management.io/v1/policygenerator
@@ -313,8 +313,8 @@ spec:
         cpu: 500m
         memory: 256Mi
       requests:
-        cpu: 250m
-        memory: 128Mi
+        cpu: 25m
+        memory: 28Mi
   kustomizeBuildOptions: '--enable-alpha-plugins --enable-helm'
   tls:
     ca: {}
@@ -324,8 +324,8 @@ spec:
         cpu: '1'
         memory: 1Gi
       requests:
-        cpu: 250m
-        memory: 256Mi
+        cpu: 25m
+        memory: 56Mi
   controller:
     logLevel: info
     processors: {}
@@ -334,6 +334,6 @@ spec:
         cpu: '4'
         memory: 8Gi
       requests:
-        cpu: '1'
-        memory: 2Gi
+        cpu: 50m
+        memory: 20Mi
     sharding: {}
