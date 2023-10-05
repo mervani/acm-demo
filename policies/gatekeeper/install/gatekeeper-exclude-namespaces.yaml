@@ -40,12 +40,19 @@ spec:
                         - openshift
                         - stackrox
                         - rhacs-operator
+                        - openshift-*
+                        - kube-*
+                        - open-cluster-management-*
+                        - multicluster-engine
                         - kube-node-lease
                         - kube-public
                         - kube-storage-version-migrator-operator
                         - kube-system
                         - open-cluster-management
                         - open-cluster-management-hub
+                        - open-cluster-management-addon-observability
+                        - open-cluster-management-global-set
+                        - open-cluster-management-observability
                         - open-cluster-management-agent
                         - open-cluster-management-agent-addon
                         - openshift
@@ -53,6 +60,13 @@ spec:
                         - openshift-apiserver-operator
                         - openshift-authentication
                         - openshift-authentication-operator
+                        - openshift-cloud-controller-manager
+                        - openshift-cloud-controller-manager-operator
+                        - openshift-cloud-network-config-controller
+                        - openshift-gitops
+                        - openshift-nutanix-infra
+                        - openshift-route-controller-manager
+                        - openshift-storage
                         - openshift-cloud-credential-operator
                         - openshift-cluster-csi-drivers
                         - openshift-cluster-machine-approver
