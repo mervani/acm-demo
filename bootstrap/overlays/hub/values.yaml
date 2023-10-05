@@ -37,9 +37,9 @@ applications:
     source:
       path: policies/kyverno
 
-  gatekeeper-policy-app:
-    source:
-      path: policies/gatekeeper
+# gatekeeper-policy-app:
+#   source:
+#     path: policies/gatekeeper
 
   cluster-config-app:
     source:
