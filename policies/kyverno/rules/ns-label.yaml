@@ -22,22 +22,26 @@ spec:
       any:
       - resources:
           kinds:
-            - Namespace
-            - ProjectRequest
-            - Project
+          - Namespace
+          - ProjectRequest
+          - Project
     exclude:
       any:
       - subjects:
         - kind: Group
           name: "devops-group"
+      - clusterRoles:
+        - cluster-admin
+    preconditions:
+      any:
+      - key: "{{request.operation}}"
+        operator: AnyIn
+        value:
+        - CREATE
+        - UPDATE
     validate:
-      message: The only namespaces are the ones starting by bsa-*
-      foreach:
-      - list: "request.userInfo.groups[?contains(@,':') == `false`][].{name:@}"
-        elementScope: true
-        deny:
-          conditions:
-            any:
-            - key: "{{ request.object.metadata.labels.framework }}"
-              operator: AnyNotIn
-              value: "?*"
+      message: The framework label is required to create the namespace
+      pattern:
+        metadata:
+          labels:
+            framework: "?*"
