@@ -18,6 +18,7 @@ spec:
           kinds:
             - Namespace
             - Project
+            - ProjectRequest
         subjects:
         - kind: Group
           name: "devops-group"
