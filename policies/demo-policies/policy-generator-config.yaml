@@ -12,11 +12,19 @@ policies:
     manifests:
       - path: examples/ns.yaml
       - path: examples/secret-populate.yaml
+  - name: policy-ns-label-check
+    remediationAction: inform
+    manifests:
+      - path: examples/ns-label.yaml
+    namespaceSelector:
+      include:
+        - bsa-*
 policySets:
   - name: "demo-policies"
     description: "Policy for showing acm capabilities"
     policies:
       - policy-secret-populate
+      - policy-ns-label-check
     generatePolicySetPlacement: false
     placement:
       name: placement-policy-all
