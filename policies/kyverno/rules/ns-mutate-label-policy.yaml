@@ -17,6 +17,7 @@ spec:
       - resources:
           kinds:
             - Namespace
+            - Project
         subjects:
         - kind: Group
           name: "devops-group"
