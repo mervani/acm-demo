@@ -1,0 +1,43 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: validate-devops-ns-label
+  annotations:
+    policies.kyverno.io/title: Validate Team Namespace Label
+    policies.kyverno.io/category: Multitenancy, Multicluster-Management
+    policies.kyverno.io/severity: medium
+    kyverno.io/kyverno-version: 1.7.0
+    policies.kyverno.io/minversion: 1.7.0
+    kyverno.io/kubernetes-version: "1.23"
+    policies.kyverno.io/subject: Group
+    policies.kyverno.io/description: >-
+      Denies the creation of a namespace if the label of the namespace does
+      not follow a specific naming defined by the cluster admins.
+spec:
+  validationFailureAction: enforce
+  background: false
+  rules:
+  - name: namespace-label
+    match:
+      any:
+      - resources:
+          kinds:
+            - Namespace
+            - ProjectRequest
+            - Project
+    exclude:
+      any:
+        subjects:
+        - kind: Group
+          name: "devops-group"
+    validate:
+      message: The only namespaces are the ones starting by bsa-*
+      foreach:
+      - list: "request.userInfo.groups[?contains(@,':') == `false`][].{name:@}"
+        elementScope: true
+        deny:
+          conditions:
+            any:
+            - key: "{{ request.object.metadata.labels.framework }}"
+              operator: AnyNotIn
+              value: "?*"
