@@ -16,6 +16,7 @@ spec:
         metadata:
           name: gatekeeper-operator-product-sub
         spec:
+          pruneObjectBehavior: DeleteIfCreated
           remediationAction: inform
           severity: high
           object-templates:
@@ -55,6 +56,7 @@ spec:
         metadata:
           name: gatekeeper
         spec:
+          pruneObjectBehavior: DeleteIfCreated
           remediationAction: inform
           severity: high
           object-templates:
