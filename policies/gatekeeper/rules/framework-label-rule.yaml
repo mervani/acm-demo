@@ -8,7 +8,6 @@ metadata:
 spec:
   crd:
     spec:
-      enforcementAction: dryrun
       names:
         kind: K8sRequiredLabels
       validation:
@@ -62,6 +61,7 @@ kind: K8sRequiredLabels
 metadata:
   name: require-ns-label
 spec:
+  enforcementAction: dryrun
   match:
     kinds:
       - apiGroups: [""]
