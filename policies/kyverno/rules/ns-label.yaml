@@ -1,7 +1,7 @@
 apiVersion: kyverno.io/v1
 kind: ClusterPolicy
 metadata:
-  name: validate-devops-ns-label
+  name: validate-ns-label
   annotations:
     policies.kyverno.io/title: Validate Team Namespace Label
     policies.kyverno.io/category: Multitenancy, Multicluster-Management
@@ -23,8 +23,6 @@ spec:
       - resources:
           kinds:
           - Namespace
-          - ProjectRequest
-          - Project
     exclude:
       any:
       - subjects:
