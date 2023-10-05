@@ -6,7 +6,7 @@ metadata:
 data:
   custom_rules.yaml: |
     groups:
-      - name: cluster-health
+      - name: cluster-health-cpu-60
         rules:
         - alert: ClusterCPUReq-60
           annotations:
@@ -18,3 +18,13 @@ data:
           labels:
             cluster: "{{ $labels.cluster }}"
             severity: critical
+        - alert: MemoryRequested-45
+          annotations:
+            summary: Notify when the total memory requested in the clusters is greater than 45%.
+            description: "The cluster {{ $labels.cluster }} has more than 45% of the memory requested."
+          expr: |
+            cluster:memory_requested:ratio > 0.45
+          for: 5s
+          labels:
+            cluster: "{{ $labels.cluster }}"
+            severity: warning
