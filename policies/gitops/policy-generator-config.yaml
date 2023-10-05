@@ -13,6 +13,7 @@ policies:
     manifests:
       - path: subscription/
   - name: policy-gitops-instance
+    complianceType: "mustonlyhave"
     dependencies:
     - name: "policy-gitops-subscription"
       namespace: "acm-policies"
