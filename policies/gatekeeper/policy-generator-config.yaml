@@ -20,6 +20,7 @@ policySets:
     description: "Policy for applying gatekeeper policies"
     policies:
       - policy-gatekeeper-operator
+      - policy-gatekeeper-config-exclude-namespaces
       - policy-gatekeeper-rules
     generatePolicySetPlacement: false
     placement:
