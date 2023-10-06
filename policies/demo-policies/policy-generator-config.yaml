@@ -12,6 +12,9 @@ policies:
     manifests:
       - path: examples/ns.yaml
       - path: examples/secret-populate.yaml
+  - name: policy-secret-populate-preprocess
+    manifests:
+      - path: examples/hub-secret-preprocess.yaml
 policySets:
   - name: "demo-policies"
     description: "Policy for showing acm capabilities"
@@ -20,3 +23,10 @@ policySets:
     generatePolicySetPlacement: false
     placement:
       name: placement-policy-all
+  - name: "demo-policies-hub"
+    description: "Policy for showing acm capabilities - acm secret preprocess"
+    policies:
+      - policy-secret-populate-preprocess
+    generatePolicySetPlacement: false
+    placement:
+      name: placement-hub

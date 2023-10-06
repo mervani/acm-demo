@@ -11,3 +11,17 @@ subjects:
 - apiGroup: policy.open-cluster-management.io
   kind: PolicySet
   name: demo-policies
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-policy-demos-hub
+  namespace: acm-policies
+placementRef:
+  apiGroup: cluster.open-cluster-management.io
+  kind: Placement
+  name: placement-hub
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: PolicySet
+  name: demo-policies-hub

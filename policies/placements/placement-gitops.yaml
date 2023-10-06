@@ -12,3 +12,5 @@ spec:
         matchExpressions:
         - key: gitops
           operator: Exists
+        - key: gitops-repo
+          operator: Exists

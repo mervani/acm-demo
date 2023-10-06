@@ -1,0 +1,35 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: mutate-pod-label
+  annotations:
+    policies.kyverno.io/title: Mutate DevOps Namespace label
+    policies.kyverno.io/category: Multitenancy, Multicluster-Management
+    policies.kyverno.io/severity: medium
+    policies.kyverno.io/minversion: 1.7.0
+    kyverno.io/kubernetes-version: "1.23"
+spec:
+  background: false
+  rules:
+  - name: add-pod-label
+    match:
+      any:
+      - resources:
+          kinds:
+            - Pod
+        subjects:
+        - kind: Group
+          name: "devops-group"
+    preconditions:
+      any:
+      - key: "{{request.operation}}"
+        operator: In
+        value:
+        - CREATE
+        - UPDATE
+    mutate:
+      patchStrategicMerge:
+        metadata:
+          labels:
+            framework-pod: bsa
+            ns-owner-pod: bsa-devops
