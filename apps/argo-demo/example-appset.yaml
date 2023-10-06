@@ -23,8 +23,14 @@ spec:
       destination:
         server: '{{server}}'
         namespace: bgd
+      ignoreDifferences:
+      - jsonPointers:
+        - /spec/host
+        group: "*"
+        kind: Route
       syncPolicy:
         automated:
           prune: true
         syncOptions:
           - CreateNamespace=true
+          - RespectIgnoreDifferences=true
