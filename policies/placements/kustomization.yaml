@@ -2,9 +2,5 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - ns.yaml
-  - mcsb.yaml
-  - placement-all.yaml
-  - placement-hub.yaml 
-  - placement-gitops.yaml
-  - placement-opa.yaml
+  - acm-policies/
+  - argocd/

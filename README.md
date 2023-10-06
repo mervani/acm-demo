@@ -42,9 +42,9 @@ There is an example gatekeeper policy showing that the namespaces should have fr
 
 ## Kyverno
 
-Three example policies are: namespaces created by `devops-group` should start with `bsa-`, pods created in namespaces starting with `bsa-` namespace must have `team` label and a mutator policy: namespaces created by the `devops-group` are labeled as `framework`, pods are labeled with team.
+Three example policies are: namespaces created by `devops-group` should start with `bsa-`, pods created in namespaces starting with `bsa-` namespace must have `team` label and a mutator policy: namespaces created by the `devops-group` are labeled as `framework`.
 
 ## References
 
-- OCM Policy Collectio repo: https://github.com/open-cluster-management-io/policy-collection.git
+- OCM Policy Collection repo: https://github.com/open-cluster-management-io/policy-collection.git
 - ACM/ArgoCD Bootstrap example repo: https://github.com/gnunn-gitops/acm-hub-bootstrap.git
