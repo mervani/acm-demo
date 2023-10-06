@@ -1,7 +1,7 @@
 apiVersion: cluster.open-cluster-management.io/v1beta1
 kind: Placement
 metadata:
-  name: placement-gitops
+  name: placement-gitops-mc
   namespace: openshift-gitops
 spec:
   clusterSets:
@@ -14,3 +14,6 @@ spec:
           operator: Exists
         - key: gitops-repo
           operator: Exists
+        - key: name
+          operator: NotIn
+          values: ["local-cluster"]
