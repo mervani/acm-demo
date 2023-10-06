@@ -13,16 +13,16 @@ spec:
         requeueAfterSeconds: 30
   template:
     metadata:
-      name: '{{name}}-guestbook-app'
+      name: '{{name}}-bgd-app'
     spec:
       project: default
       source:
-        repoURL: 'https://github.com/argoproj/argocd-example-apps.git'
+        repoURL: 'https://github.com/christianh814/gitops-examples.git'
         targetRevision: HEAD
-        path: guestbook
+        path: bgd
       destination:
         server: '{{server}}'
-        namespace: guestbook
+        namespace: ex-appset-from-hub
       syncPolicy:
         automated:
           prune: true
