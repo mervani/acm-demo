@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: guestbook-app-set
+  name: bgd-app-set
   namespace: argocd
 spec:
   generators:
@@ -22,7 +22,7 @@ spec:
         path: bgd
       destination:
         server: '{{server}}'
-        namespace: ex-appset-from-hub
+        namespace: bgd
       syncPolicy:
         automated:
           prune: true
