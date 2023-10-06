@@ -3,6 +3,9 @@ kind: Kustomization
 
 namespace: openshift-gitops
 
+resources:
+  - apps/argo-demo/
+
 helmCharts:
 - name: argocd-app-of-app
   version: 0.2.0
