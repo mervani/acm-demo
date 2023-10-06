@@ -7,3 +7,4 @@ resources:
   - placement-all.yaml
   - placement-hub.yaml
   - placement-managed-clusters.yaml
+  - placement-gitops.yaml

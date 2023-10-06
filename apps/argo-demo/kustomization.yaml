@@ -3,3 +3,4 @@ kind: Kustomization
 
 resources:
   - example-appset.yaml
+  - pull-appset.yaml
