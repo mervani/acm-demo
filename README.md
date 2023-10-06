@@ -4,7 +4,7 @@ This repo contains different functionalities that can be realized with ACM.
 
 > **_NOTE:_**  The policies are bootstrapped with an ArgoCD application. 
 
-> **_NOTE:_**  Details of bootstrap ArgoCD application can be found in this [article] (https://gexperts.com/wp/bootstrapping-openshift-gitops-with-rhacm/). There is a video in [GitOps Guide to Galaxy] (https://www.youtube.com/watch?v=WcBis_KErIo) channel.
+> **_NOTE:_**  Details of bootstrap ArgoCD application can be found in this [article](https://gexperts.com/wp/bootstrapping-openshift-gitops-with-rhacm/). There is a video in [GitOps Guide to Galaxy](https://www.youtube.com/watch?v=WcBis_KErIo) channel.
 
 ## ACM Policies
 
