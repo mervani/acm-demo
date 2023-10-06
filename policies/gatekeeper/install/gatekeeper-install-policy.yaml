@@ -71,7 +71,7 @@ spec:
                     logLevel: INFO
                     replicas: 1
                   validatingWebhook: Enabled
-                  mutatingWebhook: Disabled
+                  mutatingWebhook: Enabled
                   webhook:
                     emitAdmissionEvents: Enabled
                     logLevel: INFO
