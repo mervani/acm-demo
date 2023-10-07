@@ -4,8 +4,5 @@ kind: Kustomization
 resources:
   - placement-binding.yaml
 
-commonAnnotations:
-  argocd.argoproj.io/compare-options: IgnoreExtraneous
-
 generators:
   - policy-generator-config.yaml

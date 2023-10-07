@@ -5,6 +5,7 @@ metadata:
 policyDefaults:
   namespace: acm-policies
   remediationAction: enforce
+  pruneObjectBehavior: DeleteIfCreated
 placementBindingDefaults:
   name: "binding-policy-odf"
 policies:
