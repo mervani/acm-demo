@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: policy-config-bootstrap
+  name: cluster-bootstrap-app
   namespace: openshift-gitops
 spec:
   project: bootstrap

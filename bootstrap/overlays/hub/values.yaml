@@ -37,7 +37,7 @@ applications:
     source:
       path: policies/odf
 
-  acm-observability-app:
+  acm-observability-policy-app:
     source:
       path: policies/observability
 
