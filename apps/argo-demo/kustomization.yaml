@@ -4,3 +4,20 @@ kind: Kustomization
 resources:
   - example-appset.yaml
   - pull-appset.yaml
+
+patches:
+  - target:
+      kind: ApplicationSet
+      name: pull-app-set
+    patch: |-
+      - op: add
+        path: /spec/template/metadata/annotations/argocd.argoproj.io~1sync-wave
+        value: "5"
+  - target:
+      kind: ApplicationSet
+      name: bgd-app-set
+    patch: |-
+      - op: add
+        path: /spec/template/metadata/annotations
+        value: 
+          argocd.argoproj.io/sync-wave: "5"
