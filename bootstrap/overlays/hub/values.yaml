@@ -34,6 +34,8 @@ applications:
       path: policies/gitops
 
   odf-policy-app:
+    annotations:
+      argocd.argoproj.io/sync-wave: '-4'
     source:
       path: policies/odf
 
