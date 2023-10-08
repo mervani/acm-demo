@@ -14,7 +14,7 @@ policies:
     manifests:
       - path: manifests/
     dependencies:
-    - name: policy-odf-observability-bucket
+    - name: policy-odf-status
       namespace: "acm-policies"
   
   - name: policy-observability-gitops
