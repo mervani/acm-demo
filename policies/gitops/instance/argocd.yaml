@@ -26,6 +26,8 @@ spec:
     enabled: false
     ingress:
       enabled: false
+    route:
+      enabled: false
     resources:
       limits:
         cpu: 500m
