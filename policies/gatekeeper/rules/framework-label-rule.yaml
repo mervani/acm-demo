@@ -43,7 +43,7 @@ spec:
           missing := required - provided
           count(missing) > 0
           def_msg := sprintf("you must provide labels: %v", [missing])
-            #msg := get_message(input.parameters, def_msg)
+          msg := get_message(input.parameters, def_msg)
         }
         violation[{"msg": msg}] {
           value := input.review.object.metadata.labels[key]
