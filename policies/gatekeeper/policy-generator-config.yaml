@@ -11,11 +11,16 @@ policyDefaults:
 placementBindingDefaults:
   name: "binding-policy-gatekeeper"
 policies:
-  - name: policy-gatekeeper-rules
+  - name: policy-gatekeeper-constraints
+    dependencies:
+    - name: "policy-gatekeeper-templates"
+    manifests:
+      - path: constraints/
+  - name: policy-gatekeeper-templates
     dependencies:
     - name: "policy-gatekeeper-operator"
     manifests:
-      - path: rules/
+      - path: templates/
 policySets:
   - name: "gatekeeper"
     description: "Policy for applying gatekeeper policies"

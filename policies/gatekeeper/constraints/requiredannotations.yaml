@@ -1,0 +1,15 @@
+apiVersion: constraints.gatekeeper.sh/v1
+kind: K8sRequiredAnnotations
+metadata:
+  name: all-must-have-certain-set-of-annotations
+spec:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+  parameters:
+    message: "All pods must have a `paloalto/owner` annotation."
+    annotations:
+      - key: paloalto/owner
+        # Matches email address or github user
+        allowedRegex: ^([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}|[a-z]{1,39})$
