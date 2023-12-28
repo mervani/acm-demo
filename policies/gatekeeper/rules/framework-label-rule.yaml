@@ -1,4 +1,4 @@
-apiVersion: templates.gatekeeper.sh/v1beta1
+apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
   name: k8srequiredlabels
@@ -56,7 +56,7 @@ spec:
           msg := get_message(input.parameters, def_msg)
         }
 ---
-apiVersion: constraints.gatekeeper.sh/v1beta1
+apiVersion: constraints.gatekeeper.sh/v1
 kind: K8sRequiredLabels
 metadata:
   name: require-ns-label

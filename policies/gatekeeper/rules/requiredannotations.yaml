@@ -59,7 +59,7 @@ spec:
         }
 
 ---
-apiVersion: constraints.gatekeeper.sh/v1beta1
+apiVersion: constraints.gatekeeper.sh/v1
 kind: K8sRequiredAnnotations
 metadata:
   name: all-must-have-certain-set-of-annotations
