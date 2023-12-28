@@ -27,7 +27,8 @@ policySets:
     policies:
       - policy-gatekeeper-operator
       - policy-gatekeeper-config-exclude-namespaces
-      - policy-gatekeeper-rules
+      - policy-gatekeeper-templates
+      - policy-gatekeeper-constraints
     generatePolicySetPlacement: false
     placement:
       name: placement-policy-opa
