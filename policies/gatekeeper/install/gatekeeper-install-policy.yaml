@@ -70,12 +70,14 @@ spec:
                   audit:
                     logLevel: INFO
                     replicas: 1
+                    emitAuditEvents: Enabled
                   validatingWebhook: Enabled
                   mutatingWebhook: Enabled
                   webhook:
                     emitAdmissionEvents: Enabled
                     logLevel: INFO
                     replicas: 2
+                    failurePolicy: Fail
     - objectDefinition:
         apiVersion: policy.open-cluster-management.io/v1
         kind: ConfigurationPolicy
