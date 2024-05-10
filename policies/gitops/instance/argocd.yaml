@@ -3,6 +3,7 @@ kind: ArgoCD
 metadata:
   name: openshift-gitops
 spec:
+  resourceTrackingMethod: annotation
   server:
     autoscale:
       enabled: true
@@ -253,28 +254,33 @@ spec:
     scopes: '[groups]'
   extraConfig:
     accounts.pipeline: apiKey
+    resource.customizations.ignoreResourceUpdates.all: |
+      jsonPointers:
+      - /status
+    resource.ignoreResourceUpdatesEnabled: 'true'
     resource.compareoptions: |
       ignoreResourceStatusField: all
   repo:
-    env:
-      - name: KUSTOMIZE_PLUGIN_HOME
-        value: /etc/kustomize/plugin
-    initContainers:
-      - args:
-          - '-c'
-          - >-
-            cp
-            /etc/kustomize/plugin/policy.open-cluster-management.io/v1/policygenerator/PolicyGenerator
-            /policy-generator/PolicyGenerator
-        command:
-          - /bin/bash
-        image: >-
-          registry.redhat.io/rhacm2/multicluster-operators-subscription-rhel8:v2.8
-        name: policy-generator-install
-        resources: {}
+    sidecarContainers:
+      - name: policy-gen-plugin
+        command: [/var/run/argocd/argocd-cmp-server]
+        env:
+          - name: KUSTOMIZE_PLUGIN_HOME
+            value: /etc/kustomize/plugin
+        image: quay.io/rhn_gps_mileri/policy-gen-tool:latest
+        imagePullPolicy: Always
+        securityContext:
+          runAsNonRoot: true
         volumeMounts:
-          - mountPath: /policy-generator
-            name: policy-generator
+          - mountPath: /var/run/argocd
+            name: var-files
+          - mountPath: /home/argocd/cmp-server/plugins
+            name: plugins
+          - mountPath: /tmp
+            name: tmp
+          - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+            subPath: plugin.yaml
+            name: cmp-cm
     resources:
       limits:
         cpu: '2'
@@ -282,13 +288,10 @@ spec:
       requests:
         cpu: 50m
         memory: 51Mi
-    volumeMounts:
-      - mountPath: >-
-          /etc/kustomize/plugin/policy.open-cluster-management.io/v1/policygenerator
-        name: policy-generator
     volumes:
-      - emptyDir: {}
-        name: policy-generator
+    - configMap:
+        name: cmp-cm
+      name: cmp-cm
   resourceExclusions: |
     - apiGroups:
       - policy.open-cluster-management.io

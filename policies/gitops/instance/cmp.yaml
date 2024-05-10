@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cmp-cm
+  namespace: openshift-gitops
+data:
+  plugin.yaml: |
+    apiVersion: argoproj.io/v1alpha1
+    kind: ConfigManagementPlugin
+    metadata:
+      name: setenv-cmp-plugin
+    spec:
+      version: v1.0
+      init:
+        command: [sh, -c, 'echo "Initializing Config Management Plugin..."']
+      generate:
+        command:
+          - sh
+          - "-c"
+          - "kustomize build --enable-helm --enable-alpha-plugins ."
+      discover:
+        find:
+          command: [sh, -c, 'find . -maxdepth 1 -name kustomization.yaml']
