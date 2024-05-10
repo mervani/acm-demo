@@ -3,6 +3,7 @@ kind: PolicyGenerator
 metadata:
   name: gitops-policy-generator
 policyDefaults:
+  copyPolicyMetadata: false
   namespace: acm-policies
   remediationAction: enforce
   pruneObjectBehavior: DeleteIfCreated

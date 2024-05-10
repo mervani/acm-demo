@@ -3,6 +3,7 @@ kind: PolicyGenerator
 metadata:
   name: gatekeeper-policy-generator
 policyDefaults:
+  copyPolicyMetadata: false
   configurationPolicyAnnotations: {"policy.open-cluster-management.io/disable-templates": "true"}
   policyAnnotations: {"argocd.argoproj.io/sync-options": "ServerSideApply=true"}
   namespace: acm-policies
