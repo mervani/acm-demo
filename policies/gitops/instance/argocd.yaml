@@ -48,6 +48,28 @@ spec:
       enabled: false
   initialSSHKnownHosts: {}
   resourceHealthChecks:
+    - check: |
+        hs = {}
+        hs.status = "Progressing"
+        hs.message = ""
+        if obj.status ~= nil then
+          if obj.status.compliant ~= nil then
+            hs.message = obj.status.compliant
+            if obj.status.compliant == "Compliant" then
+              hs.status = "Healthy"
+            elseif obj.status.compliant == "Pending" then
+              hs.status = "Progressing"
+            elseif obj.status.compliant == "NonCompliant" then
+              hs.status = "Degraded"
+            end
+          else
+            hs.status = "Healthy"
+            hs.message = "No managed cluster"
+          end
+        end
+        return hs
+      group: policy.open-cluster-management.io
+      kind: Policy
     - group: argoproj.io
       kind: Application
       check: |
@@ -261,26 +283,31 @@ spec:
     resource.compareoptions: |
       ignoreResourceStatusField: all
   repo:
-    env:
-    - name: KUSTOMIZE_PLUGIN_HOME
-      value: /etc/kustomize/plugin
-    initContainers:
-    - args:
-      - -c
-      - cp /policy-generator/PolicyGenerator-not-fips-compliant /policy-generator-tmp/PolicyGenerator
-      command:
-      - /bin/bash
-      image: registry.redhat.io/rhacm2/multicluster-operators-subscription-rhel9:v2.10
-      name: policy-generator-install
-      volumeMounts:
-      - mountPath: /policy-generator-tmp
-        name: policy-generator
-    volumeMounts:
-    - mountPath: /etc/kustomize/plugin/policy.open-cluster-management.io/v1/policygenerator
-      name: policy-generator
+    sidecarContainers:
+      - command:
+          - /var/run/argocd/argocd-cmp-server
+        env:
+          - name: KUSTOMIZE_PLUGIN_HOME
+            value: /etc/kustomize/plugin
+        image: 'quay.io/rhn_gps_mileri/policy-gen-tool:latest'
+        imagePullPolicy: Always
+        name: policy-gen-plugin
+        securityContext:
+          runAsNonRoot: true
+        volumeMounts:
+          - mountPath: /var/run/argocd
+            name: var-files
+          - mountPath: /home/argocd/cmp-server/plugins
+            name: plugins
+          - mountPath: /tmp
+            name: tmp
+          - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+            name: cmp-cm
+            subPath: plugin.yaml
     volumes:
-    - emptyDir: {}
-      name: policy-generator
+      - configMap:
+          name: cmp-cm
+        name: cmp-cm
     resources:
       limits:
         cpu: '2'
