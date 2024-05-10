@@ -17,29 +17,33 @@ applications:
 
   acm-hub-app:
     annotations:
-      argocd.argoproj.io/sync-wave: '-20'
+      argocd.argoproj.io/sync-wave: '-2'
     source:
       path: apps/acm-hub
 
   acm-placement-app:
     annotations:
-      argocd.argoproj.io/sync-wave: '-10'
+      argocd.argoproj.io/sync-wave: '-1'
     source:
       path: policies/placements
+    syncPolicyRetry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
 
   gitops-policy-app:
-    annotations:
-      argocd.argoproj.io/sync-wave: '-5'
     source:
       path: policies/gitops
 
   odf-policy-app:
-    annotations:
-      argocd.argoproj.io/sync-wave: '-4'
     source:
       path: policies/odf
 
   acm-observability-policy-app:
+    annotations:
+      argocd.argoproj.io/sync-wave: '1'
     source:
       path: policies/observability
 
