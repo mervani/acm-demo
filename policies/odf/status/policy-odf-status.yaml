@@ -28,14 +28,6 @@ status:
     - status: "True"
       type: Available
 ---
-apiVersion: ocs.openshift.io/v1
-kind: StorageCluster
-metadata:
-  name: ocs-storagecluster
-  namespace: openshift-storage
-status:
-  phase: Ready
----
 apiVersion: noobaa.io/v1alpha1
 kind: NooBaa
 metadata:
