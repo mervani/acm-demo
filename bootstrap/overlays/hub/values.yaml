@@ -44,6 +44,12 @@ applications:
   acm-observability-policy-app:
     source:
       path: policies/observability
+    syncPolicyRetry:
+      limit: 10
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 5m
 
   kyverno-policy-app:
     source:
