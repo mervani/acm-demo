@@ -22,8 +22,6 @@ applications:
       path: apps/acm-hub
 
   acm-placement-app:
-    annotations:
-      argocd.argoproj.io/sync-wave: '-1'
     source:
       path: policies/placements
     syncPolicyRetry:
