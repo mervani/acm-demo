@@ -42,8 +42,6 @@ applications:
       path: policies/odf
 
   acm-observability-policy-app:
-    annotations:
-      argocd.argoproj.io/sync-wave: '1'
     source:
       path: policies/observability
 
