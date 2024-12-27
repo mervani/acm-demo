@@ -57,7 +57,7 @@ spec:
       kind: Policy
       check: |
         hs = {}
-        if obj.spec.disabled ~= nil and obj.spec.disabled == false then
+        if obj.spec.disabled ~= nil and obj.spec.disabled == true then
           hs.status = "Healthy"
           hs.message = "Policy is disabled"
           return hs
