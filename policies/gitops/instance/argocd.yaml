@@ -59,7 +59,6 @@ spec:
         hs = {}
         if obj.spec.disabled ~= nil and obj.spec.disabled == true then
           hs.status = "Healthy"
-          hs.message = "Policy is disabled"
           return hs
         end
         if obj.status == nil or obj.status.compliant == nil then
